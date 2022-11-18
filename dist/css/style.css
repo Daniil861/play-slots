@@ -138,6 +138,7 @@ h6 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
+  padding-inline: 15px;
 }
 @media (max-width: 1500px) {
   .block__wrapper {
@@ -147,7 +148,7 @@ h6 {
 .block__body {
   position: relative;
   max-width: 785px;
-  height: 445px;
+  min-height: 445px;
   margin-inline: auto;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -165,6 +166,7 @@ h6 {
 .header-block__body {
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
+  column-gap: 15px;
   align-items: center;
   padding-bottom: 16px;
   border-bottom: 3px solid rgba(255, 255, 255, 0.15);
@@ -182,33 +184,81 @@ h6 {
 .header-block__text-box p {
   font-family: "Edit Undo";
   text-transform: uppercase;
-  font-size: 16px;
-  line-height: 20px;
+  line-height: 1.25;
   color: #fff;
+}
+@supports (font-size: clamp( 0.625rem , 0.3571428571rem  +  1.3392857143vw , 1rem )) {
+  .header-block__text-box p {
+    font-size: clamp( 0.625rem , 0.3571428571rem  +  1.3392857143vw , 1rem );
+  }
+}
+@supports not (font-size: clamp( 0.625rem , 0.3571428571rem  +  1.3392857143vw , 1rem )) {
+  .header-block__text-box p {
+    font-size: calc(0.625rem + 0.375 * (100vw - 20rem) / 28);
+  }
 }
 .header-block__button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 142px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(22.5px);
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
   clip-path: polygon(0% 16%, 2.5% 16%, 2.55% 8%, 5% 8%, 5% 0%, 95% 0%, 95% 8%, 97.5% 8%, 97.5% 16%, 100% 16%, 100% 84%, 97.5% 84%, 97.5% 92%, 95% 92%, 95% 100%, 5% 100%, 5% 92%, 2.5% 92%, 2.5% 84%, 0% 84%);
+}
+@supports (width: clamp( 5rem , 2.2321428571rem  +  13.8392857143vw , 8.875rem )) {
+  .header-block__button {
+    width: clamp( 5rem , 2.2321428571rem  +  13.8392857143vw , 8.875rem );
+  }
+}
+@supports not (width: clamp( 5rem , 2.2321428571rem  +  13.8392857143vw , 8.875rem )) {
+  .header-block__button {
+    width: calc(5rem + 3.875 * (100vw - 20rem) / 28);
+  }
+}
+@supports (height: clamp( 1.875rem , 1.25rem  +  3.125vw , 2.75rem )) {
+  .header-block__button {
+    height: clamp( 1.875rem , 1.25rem  +  3.125vw , 2.75rem );
+  }
+}
+@supports not (height: clamp( 1.875rem , 1.25rem  +  3.125vw , 2.75rem )) {
+  .header-block__button {
+    height: calc(1.875rem + 0.875 * (100vw - 20rem) / 28);
+  }
+}
+@media (any-hover: hover) {
+  .header-block__button:hover {
+    background-color: #447ef7;
+  }
 }
 .header-block__button p {
   font-family: "Space";
   font-weight: 700;
-  font-size: 12px;
-  line-height: 18px;
+  line-height: 1.5;
   color: #fff;
+}
+@supports (font-size: clamp( 0.5rem , 0.3214285714rem  +  0.8928571429vw , 0.75rem )) {
+  .header-block__button p {
+    font-size: clamp( 0.5rem , 0.3214285714rem  +  0.8928571429vw , 0.75rem );
+  }
+}
+@supports not (font-size: clamp( 0.5rem , 0.3214285714rem  +  0.8928571429vw , 0.75rem )) {
+  .header-block__button p {
+    font-size: calc(0.5rem + 0.25 * (100vw - 20rem) / 28);
+  }
 }
 
 .content-block__items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 15px;
+  gap: 15px;
+}
+@media (max-width: 768px) {
+  .content-block__items {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 .item-content {
   min-height: 325px;
@@ -229,6 +279,21 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.item-content__box-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 15px;
+  min-height: 240px;
+}
+.item-content__box-img p {
+  font-family: "Edit Undo";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 18px;
+  color: #ffffff;
 }
 .item-content__info {
   margin-top: 17px;
